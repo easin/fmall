@@ -2,21 +2,22 @@
 <!DOCTYPE generatorConfiguration  
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
-  
-<generatorConfiguration>  
+
+<generatorConfiguration> 
+ <properties resource="db/generate/generator-common.properties"/> 
 <!--   classPathEntry:数据库的JDBC驱动的jar包地址：注意是绝对路径  -->
-  <classPathEntry location="D:/Documents/GitHub/fmall/fm/fmall-springmvc/WebContent/WEB-INF/lib/mysql-connector-java-5.1.24-bin.jar" />  
+  <classPathEntry location="${classPathEntry}" />  
   
 <context id="mysql" targetRuntime="MyBatis3">  
   <commentGenerator>  
     <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
-    <property name="suppressAllComments" value="false" />  
+    <property name="suppressAllComments" value="true" />  
     <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->  
   </commentGenerator>  
-  <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
-          connectionURL="jdbc:mysql://localhost:3306/test"  
-          userId="root"  
-          password="root">  
+  <jdbcConnection driverClass="${driverClass}"  
+          connectionURL="${connectionURL}"  
+          userId="${userId}"  
+          password="${password}">  
   </jdbcConnection>  
     <!--  默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer   
          true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal   
@@ -25,28 +26,27 @@
      <property name="forceBigDecimals" value="false" />  
   </javaTypeResolver>  
   <!-- targetProject:自动生成代码的位置 -->  
-  <javaModelGenerator targetPackage="com.fmall.springmvc.generate.pojo" targetProject="fmall-springmvc">  
+  <javaModelGenerator targetPackage="${javaModelGeneratorPackage}" targetProject="${javaModelGeneratorProject}">  
       <!-- enableSubPackages:是否让schema作为包的后缀 -->       
       <property name="enableSubPackages" value="true" />  
     <!-- 从数据库返回的值被清理前后的空格  -->   
       <property name="trimStrings" value="true" />  
   </javaModelGenerator>  
     
-  <sqlMapGenerator targetPackage="db.mappers"  targetProject="fmall-springmvc">  
+  <sqlMapGenerator targetPackage="${sqlMapGeneratorPackage}"  targetProject="${sqlMapGeneratorProject}">  
        <property name="enableSubPackages" value="false" />  
   </sqlMapGenerator>  
     
-  <javaClientGenerator type="XMLMAPPER" targetPackage="com.fmall.springmvc.generate.mapper"  targetProject="fmall-springmvc">  
+  <javaClientGenerator type="${javaClientGeneratorType}" targetPackage="${javaClientGeneratorPackage}"  targetProject="${javaClientGeneratorProject}">  
     <property name="enableSubPackages" value="true" />  
   </javaClientGenerator>  
   <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->  
-  <table schema="test" tableName="tb_user" domainObjectName="MyUser" 
-  enableCountByExample="true" 
-  enableUpdateByExample="true"
-  enableDeleteByExample="true" 
-  enableSelectByExample="true"
-  selectByExampleQueryId="true">  
-    
+  <table schema="test" tableName="generic_user" domainObjectName="GenericUser" 
+  enableCountByExample="false" 
+  enableUpdateByExample="false"
+  enableDeleteByExample="false" 
+  enableSelectByExample="false"
+  selectByExampleQueryId="false">  
   </table>  
 </context>  
    

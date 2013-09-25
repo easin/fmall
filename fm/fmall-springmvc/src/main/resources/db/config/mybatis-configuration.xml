@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<properties>
+		<property name="dialect" value="mysql" />
+		<property name="pageSqlId" value=".*Page$" />
+	</properties>
+	<plugins>
+		<plugin interceptor="dao.common.pagi.mybatis.PageInterceptor"></plugin>
+	</plugins>
 	<mappers>
 <!-- 		<mapper resource="db/mappers/UserDaoMapper.xml"/> -->
 <!-- 		<mapper url="file:///E:/UserMapper.xml"/>  -->
 	</mappers>
-	
+ 
 
 	
 </configuration>

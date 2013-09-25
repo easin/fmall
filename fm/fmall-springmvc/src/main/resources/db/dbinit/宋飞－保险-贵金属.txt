@@ -1,0 +1,94 @@
+﻿drop table  if exists precious_metal;
+
+CREATE TABLE precious_metal(
+	id int primary key comment '主键',
+	investment_type varchar(30) not null  comment '投资类别',
+	product_name varchar(90) comment '产品名称',
+	trading_institution varchar(30)  comment'交易机构',
+        issuer varchar(60)  comment '发行机构',
+	brank_name varchar(60)  comment '银行',
+	suited_area varchar(60) comment  '适用地区',
+	handling_process varchar(300)  comment  '办理流程',
+        product_introduce varchar(300)  comment  '产品介绍',
+	preferencial_info varchar(120)  comment    '优惠信息',
+	special_tip varchar(60)  comment   '特别提示',	
+	tra_way varchar(60)  comment   '交易方式',
+	tra_time varchar(60) comment   '交易时间',
+	can_go_short char(3) comment  '能否做空',
+	quoted_way varchar(60) comment  '报价方式',
+	quoted_unit varchar(90) comment'报价单位',
+	min_change_price varchar(90) comment '最小变动价',
+	min_incremental varchar(90) comment '最小递增量',
+	tra_poundage varchar(180) comment '交易手续费',
+	detail_table varchar(30) comment '详细信息表',
+	detail_id int comment '详细信息id'
+);
+
+drop table if exists paper_gold_detail;
+CREATE TABLE paper_gold_detail(
+	id int primary key comment '主键',
+	currency varchar(60) comment '币种',
+	min_weight varchar(60)  comment '单笔起始重量',
+	datum_mark_D varchar(60)  comment '基准点差',
+        class_datum int not null comment '交易点差和层级表ID',
+	card_supported char(60) not null comment  '支持卡片'
+);
+
+drop table if exists ref_class_datum;
+CREATE TABLE ref_class_datum (
+        id int primary key comment'主键',
+	tra_class varchar(60) not null comment '交易层级',
+        tra_datum varchar(60)not null comment '基准点差'
+);
+
+
+
+drop table if exists real_gold_detail;
+CREATE TABLE real_gold_detail(
+	id int primary key comment '主键',
+	is_pledgable char(3) not null comment '可否质押',
+	bank_limit varchar(30) not null comment '发行限额',
+	pro_weight varchar(180) not null comment '产品重量',
+	gold_content varchar(10) not null comment '含金量',
+	is_buy_back char(3) not null comment '是否回购',
+	buy_back_rate varchar(30)  comment '回购费率',
+	purchase_limit varchar(60)not null comment '申购限额',
+	is_escrow varchar(3)not null default '否' comment '是否提供代保代管' ,
+	escrow_rate varchar(60)not null comment '代保管费率'
+);
+
+
+drop table if exists futures_margin;
+CREATE TABLE futures_margin(
+	id int primary key comment '主键',
+	min_consignation varchar(60) comment '最小委托单位',
+	max_consignation varchar(60) comment '最高委托单位',
+	open_account_fee varchar(60) comment '开户费',
+	pickup_goods_rule varchar(120) comment '提货规则',
+	tra_kind varchar(60) comment '交易品种',
+	gold_content varchar(10)   comment '含金量',
+	cash_deposite_proportion varchar(60) comment '保证金比例',
+	price_limits_proportion varchar(60) comment '涨跌停比例'
+);
+
+
+drop table if exists insurance;
+CREATE TABLE insurance(
+	id int  primary key comment '主键',
+	insurance_company varchar(60) comment '保险公司',
+	product_name varchar(90) comment '产品名称',
+	suitable_pepole varchar(90) comment '适用人群',
+	brief_introduce varchar(180) comment '产品简介',
+	brightened_dot varchar(360) comment '产品亮点', 
+	price_range varchar(180) comment '价格范围',
+	compensation_limit varchar(180) comment '赔偿额度',
+	insurance_clause varchar(180) comment '保险条款',
+	protected_rights_and_interests varchar(180) comment '保障权益',
+	pepole_classification varchar(120) comment '人群分类',
+	insurance_type varchar(60) comment '保障类型',
+	insurance_custimization varchar(60) comment '自选保障',
+	insurance_special varchar(60) comment '特殊保障',
+	insurance_deadtime varchar(60) comment '保障期限',
+	customer_age varchar(30) comment '客户年龄',
+	customer_sex char(3) comment '客户性别'
+);
